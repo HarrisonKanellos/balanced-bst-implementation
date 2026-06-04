@@ -28,7 +28,21 @@ function createTree(array) {
         return rootNode;
     }
 
-    
+    function includes(value, rootNode = root) {
+        if (value === rootNode.data) {
+            return true;
+        }
+        if (rootNode === null) {
+            return false;
+        }
+        if (value < rootNode.data) {
+            return includes(value, root.left);
+        }
+        return includes(value, root.right);
+    }
 
-    return { root }
+    return { 
+        root, 
+        includes,
+    }
 }
