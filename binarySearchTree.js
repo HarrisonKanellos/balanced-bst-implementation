@@ -41,8 +41,27 @@ function createTree(array) {
         return includes(value, root.right);
     }
 
+    function insert(value, rootNode = root) {
+        // If value already exists do nothing
+        if (value === rootNode.data) {
+            return;
+        }
+
+        // If end of tree reached, return new node
+        if (rootNode === null) {
+            return createNode(value);
+        }
+
+        if (value < rootNode.data) {
+            rootNode.left = insert(value, rootNode.left);
+        } else {
+            rootNode.right = insert(value, rootNode.right);
+        }
+    }
+
     return { 
         root, 
         includes,
+        insert,
     }
 }
