@@ -57,11 +57,45 @@ function createTree(array) {
         } else {
             rootNode.right = insert(value, rootNode.right);
         }
+        
+        return rootNode;
+    }
+
+    function deleteItem(value, rootNode = root) {
+        if (rootNode === null) {
+            return rootNode;
+        }
+        
+        if (value < rootNode.data) {
+            rootNode.left = deleteItem(value, rootNode.left);
+        } else if (value > rootNode.data) {
+            rootNode.right = deleteItem(value, rootNode.right);
+        } else {
+            // 0 or 1 child nodes
+            if (rootNode.left === null) {
+                return rootNode.right;
+            }
+            if (rootNode.right === null) {
+                return rootNode.left;
+            }
+            
+            // 2 child nodes
+            const replacement = rootNode.right;
+            while (replacement !== null && replacement.left !== null) {
+                replacement = replacement.left;
+            }
+
+            rootNode.data = replacement.data;
+            rootNode.right = deleteItem(replacement.data, rootNode.right);
+        }
+        
+        return rootNode;
     }
 
     return { 
         root, 
         includes,
         insert,
+        deleteItem,
     }
 }
