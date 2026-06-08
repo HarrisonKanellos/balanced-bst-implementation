@@ -105,7 +105,7 @@ export function createTree(inputArray) {
         q.push(root);
 
         while (q.length !== 0) {
-            const current = q.splice(0, 1);
+            const current = q.splice(0, 1).at(0);
             callback(current.data);
 
             if (current.left !== null) {
@@ -174,7 +174,7 @@ export function createTree(inputArray) {
         if (typeof arguments[0] !== "function") {
             throw new Error("Callback argument is required.");
         }
-        if (rootNode = null) {
+        if (rootNode === null) {
             return;
         }
 
