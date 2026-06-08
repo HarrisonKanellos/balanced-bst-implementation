@@ -227,6 +227,19 @@ function createTree(array) {
         }
     }
 
+    function depth(value, rootNode = root, count = 0) {
+        if (rootNode === null) {
+            return undefined;
+        }
+        if (value === rootNode.data) {
+            return count;
+        }
+        if (value < rootNode.data) {
+            return depth(value, rootNode.left, ++count);
+        }
+        return depth(value, rootNode.right, ++count);
+    }
+
     return { 
         root, 
         includes,
@@ -238,5 +251,6 @@ function createTree(array) {
         preOrderForEach,
         postOrderForEach,
         height,
+        depth,
     }
 }
