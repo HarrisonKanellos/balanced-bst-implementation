@@ -43,14 +43,14 @@ export function createTree(inputArray) {
     }
 
     function insert(value, rootNode = root) {
-        // If value already exists do nothing
-        if (value === rootNode.data) {
-            return;
-        }
-
         // If end of tree reached, return new node
         if (rootNode === null) {
             return createNode(value);
+        }
+
+        // If value already exists do nothing
+        if (value === rootNode.data) {
+            return;
         }
 
         if (value < rootNode.data) {
@@ -268,9 +268,8 @@ export function createTree(inputArray) {
             ) {
                 return true;
             }
-        } else {
-            return false;
         }
+        return false;
     }
 
     function rebalance() {
