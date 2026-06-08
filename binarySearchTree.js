@@ -29,11 +29,11 @@ function createTree(array) {
     }
 
     function includes(value, rootNode = root) {
-        if (value === rootNode.data) {
-            return true;
-        }
         if (rootNode === null) {
             return false;
+        }
+        if (value === rootNode.data) {
+            return true;
         }
         if (value < rootNode.data) {
             return includes(value, root.left);
