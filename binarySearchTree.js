@@ -2,16 +2,17 @@ function createNode(data, left = null, right = null) {
     return { data, left, right };
 }
 
-function createTree(array) {
-    const sortedArray = sortArray(array);
-    const root = buildTree(sortedArray);
+export function createTree(inputArray) {
+    const root = buildTree(sortArray(inputArray));
 
-    function sortArray(array) {
+    function sortArray(inputArray) {
         // Remove duplicate values
-        array = [...new Set(array)];
+        inputArray = [...new Set(inputArray)];
         
         // Sort in ascending order
-        array.sort((a, b) => a - b);
+        inputArray.sort((a, b) => a - b);
+        
+        return inputArray;
     }
 
     function buildTree(array) {
@@ -23,7 +24,7 @@ function createTree(array) {
         const rootNode = createNode(array[mid]);
 
         rootNode.left = buildTree(array.slice(0, mid))
-        rootNode.right = buildTree(array.slice(mid, array.length));
+        rootNode.right = buildTree(array.slice(mid + 1, array.length));
 
         return rootNode;
     }
