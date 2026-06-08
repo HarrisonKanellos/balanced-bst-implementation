@@ -272,6 +272,16 @@ function createTree(array) {
         }
     }
 
+    function rebalance() {
+        const inputArray = [];
+
+        inOrderForEach((value) => {
+            inputArray.push(value);
+        });
+
+        root = buildTree(inputArray);
+    }
+
     return { 
         root, 
         includes,
@@ -285,5 +295,6 @@ function createTree(array) {
         height,
         depth,
         isBalanced,
+        rebalance,
     }
 }
