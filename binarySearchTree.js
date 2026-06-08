@@ -182,6 +182,51 @@ function createTree(array) {
         callback(rootNode.data);
     }
 
+    function height(value, rootNode = root) {
+        if (rootNode === null) {
+            return undefined;
+        }
+
+        while (true) {
+            if (rootNode === null) {
+                return undefined;
+            } else if (value === rootNode.data) {
+                break;
+            } else if (value < rootNode.data) {
+                rootNode = rootNode.left;
+            } else {
+                rootNode = rootNode.right;
+            }
+        }
+
+        const q = [];
+        q.push({
+            rootNode, 
+            height: 0,
+        });
+
+        while (q.length !== 0) {
+            const current = q.splice(0, 1);
+
+            if (current.rootNode.left !== null) {
+                q.push({ 
+                    rootNode: current.rootNode.left, 
+                    height: current.height + 1,
+                });
+            }
+            if (current.rootNode.right !== null) {
+                q.push({
+                    rootNode: current.rootNode.right,
+                    height: current.height + 1,
+                });
+            }
+
+            if (q.length === 0) {
+                return current.height;
+            }
+        }
+    }
+
     return { 
         root, 
         includes,
@@ -192,5 +237,6 @@ function createTree(array) {
         inOrderForEach,
         preOrderForEach,
         postOrderForEach,
+        height,
     }
 }
