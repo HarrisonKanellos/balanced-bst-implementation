@@ -240,6 +240,38 @@ function createTree(array) {
         return depth(value, rootNode.right, ++count);
     }
 
+    function isBalanced(rootNode = root) {
+        if (rootNode === null) {
+            return true;
+        }
+
+        if (rootNode.left !== null &&
+            rootNode.right !== null
+        ) {
+            return isBalanced(rootNode.left) && isBalanced(rootNode.right);
+        }
+
+        if (rootNode.left === null && 
+            rootNode.right === null
+        ) {
+            return true;
+        } else if (rootNode.left === null) {
+            if (rootNode.right.left === null && 
+                rootNode.right.right === null
+            ) {
+                return true;
+            }
+        } else if (rootNode.right === null) {
+            if (rootNode.left.left === null && 
+                rootNode.left.right === null
+            ) {
+                return true;
+            }
+        } else {
+            return false;
+        }
+    }
+
     return { 
         root, 
         includes,
@@ -252,5 +284,6 @@ function createTree(array) {
         postOrderForEach,
         height,
         depth,
+        isBalanced,
     }
 }
