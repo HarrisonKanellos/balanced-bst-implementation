@@ -94,7 +94,7 @@ function createTree(array) {
 
     function levelOrderForEach(callback) {
         if (arguments.length !== 1) {
-            return;
+            throw new Error("Callback argument is required.");
         }
         if (root === null) {
             return;
@@ -119,7 +119,7 @@ function createTree(array) {
 
     function levelOrderForEachRecursive(callback, nodes = [root]) {
         if (typeof arguments[0] !== "function") {
-            return;
+            throw new Error("Callback argument is required.");
         }
         if (root === null) {
             return;
@@ -143,6 +143,45 @@ function createTree(array) {
         levelOrderForEachRecursive(callback, childNodes);
     }
 
+    function inOrderForEach(callback, rootNode = root) {
+        if (typeof arguments[0] !== "function") {
+            throw new Error("Callback argument is required.");
+        }
+        if (rootNode === null) {
+            return;
+        }
+
+        inOrderForEach(callback, rootNode.left);
+        callback(rootNode.data);
+        inOrderForEach(callback, rootNode.right);
+    }
+
+    function preOrderForEach(callback, rootNode = root) {
+        if (typeof arguments[0] !== "function") {
+            throw new Error("Callback argument is required.");
+        }
+        if (rootNode === null) {
+            return;
+        }
+
+        callback(rootNode.data);
+        preOrderForEach(callback, rootNode.left);
+        preOrderForEach(callback, rootNode.right);
+    }
+
+    function postOrderForEach(callback, rootNode = root) {
+        if (typeof arguments[0] !== "function") {
+            throw new Error("Callback argument is required.");
+        }
+        if (rootNode = null) {
+            return;
+        }
+
+        postOrderForEach(callback, rootNode.left);
+        postOrderForEach(callback, rootNode.right);
+        callback(rootNode.data);
+    }
+
     return { 
         root, 
         includes,
@@ -150,5 +189,8 @@ function createTree(array) {
         deleteItem,
         levelOrderForEach,
         levelOrderForEachRecursive,
+        inOrderForEach,
+        preOrderForEach,
+        postOrderForEach,
     }
 }
