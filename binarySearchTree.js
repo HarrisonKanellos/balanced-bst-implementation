@@ -92,10 +92,63 @@ function createTree(array) {
         return rootNode;
     }
 
+    function levelOrderForEach(callback) {
+        if (arguments.length !== 1) {
+            return;
+        }
+        if (root === null) {
+            return;
+        }
+
+        const q = [];
+        q.push(root);
+
+        while (q.length !== 0) {
+            const current = q.splice(0, 1);
+            callback(current.data);
+
+            if (current.left !== null) {
+                q.push(current.left);
+            }
+            if (current.right !== null) {
+                q.push(current.right);
+            }
+        }
+
+    }
+
+    function levelOrderForEachRecursive(callback, nodes = [root]) {
+        if (typeof arguments[0] !== "function") {
+            return;
+        }
+        if (root === null) {
+            return;
+        }
+        if (nodes.length === 0) {
+            return;
+        }
+
+        const childNodes = [];
+        for (let i = 0; i <= nodes.length; i++) {
+            callback(nodes[i].data);
+
+            if (nodes[i].left !== null) {
+                childNodes.push(nodes[i].left);
+            }
+            if (nodes[i].right !== null) {
+                childNodes.push(nodes[i].right);
+            }
+        }
+
+        levelOrderForEachRecursive(callback, childNodes);
+    }
+
     return { 
         root, 
         includes,
         insert,
         deleteItem,
+        levelOrderForEach,
+        levelOrderForEachRecursive,
     }
 }
