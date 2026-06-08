@@ -3,7 +3,7 @@ function createNode(data, left = null, right = null) {
 }
 
 export function createTree(inputArray) {
-    const root = buildTree(sortArray(inputArray));
+    let root = buildTree(sortArray(inputArray));
 
     function sortArray(inputArray) {
         // Remove duplicate values
