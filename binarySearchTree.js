@@ -50,7 +50,7 @@ export function createTree(inputArray) {
 
         // If value already exists do nothing
         if (value === rootNode.data) {
-            return;
+            return rootNode;
         }
 
         if (value < rootNode.data) {
