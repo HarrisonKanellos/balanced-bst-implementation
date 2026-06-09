@@ -37,9 +37,9 @@ export function createTree(inputArray) {
             return true;
         }
         if (value < rootNode.data) {
-            return includes(value, root.left);
+            return includes(value, rootNode.left);
         }
-        return includes(value, root.right);
+        return includes(value, rootNode.right);
     }
 
     function insert(value, rootNode = root) {
@@ -81,7 +81,7 @@ export function createTree(inputArray) {
             }
             
             // 2 child nodes
-            const replacement = rootNode.right;
+            let replacement = rootNode.right;
             while (replacement !== null && replacement.left !== null) {
                 replacement = replacement.left;
             }
@@ -273,13 +273,13 @@ export function createTree(inputArray) {
     }
 
     function rebalance() {
-        const inputArray = [];
+        const array = [];
 
         inOrderForEach((value) => {
-            inputArray.push(value);
+            array.push(value);
         });
 
-        root = buildTree(inputArray);
+        root = buildTree(array);
     }
 
     return { 
