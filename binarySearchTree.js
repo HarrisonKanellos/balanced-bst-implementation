@@ -207,7 +207,7 @@ export function createTree(inputArray) {
         });
 
         while (q.length !== 0) {
-            const current = q.splice(0, 1);
+            const current = q.splice(0, 1).at(0);
 
             if (current.rootNode.left !== null) {
                 q.push({ 
