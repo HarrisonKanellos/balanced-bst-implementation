@@ -130,7 +130,7 @@ export function createTree(inputArray) {
         }
 
         const childNodes = [];
-        for (let i = 0; i <= nodes.length; i++) {
+        for (let i = 0; i < nodes.length; i++) {
             callback(nodes[i].data);
 
             if (nodes[i].left !== null) {
