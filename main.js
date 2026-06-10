@@ -12,3 +12,5 @@ const randArray = randArrayOfLen(12);
 console.log(randArray);
 
 const bst = createTree(randArray);
+
+bst.inOrderForEach((value) => console.log(value));

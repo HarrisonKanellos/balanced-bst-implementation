@@ -235,9 +235,9 @@ export function createTree(inputArray) {
             return count;
         }
         if (value < rootNode.data) {
-            return depth(value, rootNode.left, ++count);
+            return depth(value, rootNode.left, count + 1);
         }
-        return depth(value, rootNode.right, ++count);
+        return depth(value, rootNode.right, count + 1);
     }
 
     function isBalanced(rootNode = root) {
