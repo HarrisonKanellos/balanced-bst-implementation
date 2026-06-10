@@ -1,0 +1,4 @@
+# Ignore artifacts:
+eslint.config.js
+package.json
+package-lock.json

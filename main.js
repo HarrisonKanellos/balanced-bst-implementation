@@ -6,7 +6,7 @@ const randArrayOfLen = (len) => {
         array.push(Math.floor(Math.random() * 100));
     }
     return array;
-}
+};
 
 const randArray = randArrayOfLen(12);
 console.log(randArray);

@@ -8,10 +8,10 @@ export function createTree(inputArray) {
     function sortArray(inputArray) {
         // Remove duplicate values
         inputArray = [...new Set(inputArray)];
-        
+
         // Sort in ascending order
         inputArray.sort((a, b) => a - b);
-        
+
         return inputArray;
     }
 
@@ -23,7 +23,7 @@ export function createTree(inputArray) {
         const mid = Math.floor((array.length - 1) / 2);
         const rootNode = createNode(array[mid]);
 
-        rootNode.left = buildTree(array.slice(0, mid))
+        rootNode.left = buildTree(array.slice(0, mid));
         rootNode.right = buildTree(array.slice(mid + 1, array.length));
 
         return rootNode;
@@ -58,7 +58,7 @@ export function createTree(inputArray) {
         } else {
             rootNode.right = insert(value, rootNode.right);
         }
-        
+
         return rootNode;
     }
 
@@ -66,7 +66,7 @@ export function createTree(inputArray) {
         if (rootNode === null) {
             return rootNode;
         }
-        
+
         if (value < rootNode.data) {
             rootNode.left = deleteItem(value, rootNode.left);
         } else if (value > rootNode.data) {
@@ -79,7 +79,7 @@ export function createTree(inputArray) {
             if (rootNode.right === null) {
                 return rootNode.left;
             }
-            
+
             // 2 child nodes
             let replacement = rootNode.right;
             while (replacement !== null && replacement.left !== null) {
@@ -89,7 +89,7 @@ export function createTree(inputArray) {
             rootNode.data = replacement.data;
             rootNode.right = deleteItem(replacement.data, rootNode.right);
         }
-        
+
         return rootNode;
     }
 
@@ -115,7 +115,6 @@ export function createTree(inputArray) {
                 q.push(current.right);
             }
         }
-
     }
 
     function levelOrderForEachRecursive(callback, nodes = [root]) {
@@ -202,7 +201,7 @@ export function createTree(inputArray) {
 
         const q = [];
         q.push({
-            rootNode, 
+            rootNode,
             height: 0,
         });
 
@@ -210,8 +209,8 @@ export function createTree(inputArray) {
             const current = q.splice(0, 1).at(0);
 
             if (current.rootNode.left !== null) {
-                q.push({ 
-                    rootNode: current.rootNode.left, 
+                q.push({
+                    rootNode: current.rootNode.left,
                     height: current.height + 1,
                 });
             }
@@ -246,26 +245,18 @@ export function createTree(inputArray) {
             return true;
         }
 
-        if (rootNode.left !== null &&
-            rootNode.right !== null
-        ) {
+        if (rootNode.left !== null && rootNode.right !== null) {
             return isBalanced(rootNode.left) && isBalanced(rootNode.right);
         }
 
-        if (rootNode.left === null && 
-            rootNode.right === null
-        ) {
+        if (rootNode.left === null && rootNode.right === null) {
             return true;
         } else if (rootNode.left === null) {
-            if (rootNode.right.left === null && 
-                rootNode.right.right === null
-            ) {
+            if (rootNode.right.left === null && rootNode.right.right === null) {
                 return true;
             }
         } else if (rootNode.right === null) {
-            if (rootNode.left.left === null && 
-                rootNode.left.right === null
-            ) {
+            if (rootNode.left.left === null && rootNode.left.right === null) {
                 return true;
             }
         }
@@ -282,8 +273,8 @@ export function createTree(inputArray) {
         root = buildTree(array);
     }
 
-    return { 
-        root, 
+    return {
+        root,
         includes,
         insert,
         deleteItem,
@@ -296,5 +287,5 @@ export function createTree(inputArray) {
         depth,
         isBalanced,
         rebalance,
-    }
+    };
 }
